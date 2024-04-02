@@ -34,7 +34,7 @@ public class NoteEditingView extends javax.swing.JFrame {
         jToggleButton4 = new javax.swing.JToggleButton();
         jToggleButton5 = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setFont(new java.awt.Font("Wide Latin", 0, 24)); // NOI18N
         jTextField1.setText("Name of NEW NOTE");
