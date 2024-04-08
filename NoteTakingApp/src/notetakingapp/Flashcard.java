@@ -15,16 +15,25 @@ package notetakingapp;
 public class Flashcard {
     private String question;
     private String answer;
+    private String title;
     //  add image paths or extra notes
 
-    public Flashcard(String question, String answer) {
+    public Flashcard(String question, String answer, String title) {
         this.question = question;
         this.answer = answer;
+        this.title = title;
     }
 
     // Getters and Setters
     public String getQuestion() {
         return question;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setQuestion(String question) {
