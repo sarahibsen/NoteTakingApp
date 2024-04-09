@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
 package notetakingapp;
+import java.io.*;
+import java.util.Date;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 i'm not sure how to import the NoteTakingApp.java class into this note.java 
 it is throwing errors </3 so definitely need to fix that some how 
 */
-import java.util.Date;
+
 
 public class note {
     private String title;
@@ -26,7 +28,17 @@ public class note {
         this.content = content;
         this.creationDate = new Date(); // automatically set the creation date
     }
-
+    // might want to try using this way of creating files it seems easier
+    public void createNote(String title) {
+        File file = new File(title);
+        if (file.exists()){
+            System.out.println("That file already exists! :0");
+        }
+        else {
+            System.out.println("That file doesn't exist! :)");
+        }
+    }
+    
     // Getters and Setters
     public String getTitle() {
         return title;
