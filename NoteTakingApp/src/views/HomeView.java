@@ -4,6 +4,8 @@
  */
 package views;
 
+import notetakingapp.NoteTakingApp;
+
 /**
  *
  * @author Landan
@@ -13,8 +15,11 @@ public class HomeView extends javax.swing.JFrame {
     /**
      * Creates new form HomeView
      */
+    private NoteTakingApp noteTakingApp;
+
     public HomeView() {
         initComponents();
+        noteTakingApp = new NoteTakingApp();
     }
 
     /**
@@ -239,7 +244,7 @@ public class HomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newNoteActionPerformed
-        
+        noteTakingApp.createNewNote();
     }//GEN-LAST:event_newNoteActionPerformed
 
     private void notesCollectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notesCollectionActionPerformed
