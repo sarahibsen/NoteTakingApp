@@ -63,8 +63,8 @@ public class note{
     
     public note(){
      
-        String title = JOptionPane.showInputDialog("Enter the title of the new note: ", "New Note");
-        String content = JOptionPane.showInputDialog("Enter the content of the new note:", "New Note");  
+        //String title = JOptionPane.showInputDialog("Enter the title of the new note: ", "New Note");
+        //String content = JOptionPane.showInputDialog("Enter the content of the new note:", "New Note");  
 
         bottomPanel = new JPanel();
 
@@ -210,19 +210,14 @@ public class note{
 }
    
     class newMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
              //Setting Text as empty by default
             area.setText("");
-            
-          
-            
         }
     }
      
     class openMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             
@@ -291,7 +286,6 @@ public class note{
                 area.print();
             } catch (Exception ex) {
             }
-            
         }
     }
     
@@ -302,53 +296,39 @@ public class note{
             
             //Destroying/Closing the frame/window
             frame.dispose();
-            
         }
     }
     
     class copyMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            
             text = area.getSelectedText();
-             
         }
     }
     
     class pasteMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            
             area.insert(text, area.getCaretPosition());
-             
         }
     }
     
     class cutMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            
             text = area.getSelectedText();
             area.replaceRange("", area.getSelectionStart(), area.getSelectionEnd());
-             
         }
     }
     
     class selectMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
-            
             area.selectAll();
-             
         }
     }
      
     class fontfamilyMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             
@@ -367,7 +347,6 @@ public class note{
 
     
     class fontstyleMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             
@@ -383,7 +362,6 @@ public class note{
     
     
     class fontsizeMenuItemListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
             

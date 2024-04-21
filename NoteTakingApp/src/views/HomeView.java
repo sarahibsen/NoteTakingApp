@@ -43,8 +43,6 @@ public class HomeView extends javax.swing.JFrame {
         directoryFrame = new javax.swing.JFrame();
         newNote = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        notesCollection = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         flashcards = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         notesLabel = new javax.swing.JLabel();
@@ -158,22 +156,6 @@ public class HomeView extends javax.swing.JFrame {
 
         jLabel1.setText("NEW NOTE");
 
-        notesCollection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/filingCabinet.png"))); // NOI18N
-        notesCollection.setText("notesCollection");
-        notesCollection.setInheritsPopupMenu(true);
-        notesCollection.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                notesCollectionMousePressed(evt);
-            }
-        });
-        notesCollection.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notesCollectionActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("SEE NOTES COLLECTION");
-
         flashcards.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/flashCards.png"))); // NOI18N
         flashcards.setText("flashcards");
         flashcards.setInheritsPopupMenu(true);
@@ -213,47 +195,43 @@ public class HomeView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(133, 133, 133))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(169, 169, 169)
-                .addComponent(notesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(flashcards, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(flashcards, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(notesCollection, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(study, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(136, 136, 136))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(276, 276, 276))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(301, 301, 301)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(notesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(notesLabel)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(notesCollection, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -271,10 +249,6 @@ public class HomeView extends javax.swing.JFrame {
     private void newNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newNoteActionPerformed
         
     }//GEN-LAST:event_newNoteActionPerformed
-
-    private void notesCollectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notesCollectionActionPerformed
-       
-    }//GEN-LAST:event_notesCollectionActionPerformed
 
     private void flashcardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flashcardsActionPerformed
        
@@ -310,15 +284,6 @@ public class HomeView extends javax.swing.JFrame {
        new FlashCardBuilder().setVisible(true);
        
     }//GEN-LAST:event_flashcardsMousePressed
-
-    private void notesCollectionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notesCollectionMousePressed
-        // TODO add your handling code here:
-        directoryFrame.setTitle("Directory");
-        directoryFrame.setSize(400, 300);
-        directoryFrame.setLocationRelativeTo(this);
-        directoryFrame.setVisible(true);
-        directoryFrame.setDefaultCloseOperation(directoryFrame.DISPOSE_ON_CLOSE);
-    }//GEN-LAST:event_notesCollectionMousePressed
 
     private void studyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studyActionPerformed
         
@@ -375,13 +340,11 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JFrame flashcardFrame;
     private javax.swing.JButton flashcards;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newNote;
     private javax.swing.JLabel noteLabel;
-    private javax.swing.JButton notesCollection;
     private javax.swing.JLabel notesLabel;
     private javax.swing.JButton saveNote;
     private javax.swing.JButton study;
