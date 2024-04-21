@@ -4,7 +4,11 @@
  */
 package views;
 
+import notetakingapp.note;
+import flashcard.FlashCardBuilder;
+import flashcard.FlashCardPlayer;
 import notetakingapp.NoteTakingApp;
+ 
 
 /**
  *
@@ -15,11 +19,8 @@ public class HomeView extends javax.swing.JFrame {
     /**
      * Creates new form HomeView
      */
-    private NoteTakingApp noteTakingApp;
-
     public HomeView() {
         initComponents();
-        noteTakingApp = new NoteTakingApp();
     }
 
     /**
@@ -47,6 +48,8 @@ public class HomeView extends javax.swing.JFrame {
         flashcards = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         notesLabel = new javax.swing.JLabel();
+        study = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         NotesDirectory.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         NotesDirectory.setTitle("NotesDirectory");
@@ -185,10 +188,25 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("FLASHCARDS");
+        jLabel3.setText("STUDY FLASHCARDS");
 
         notesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         notesLabel.setText("Java Notes App");
+
+        study.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/study.png"))); // NOI18N
+        study.setText("study");
+        study.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                studyMousePressed(evt);
+            }
+        });
+        study.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studyActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("NEW FLASHCARDS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,23 +219,22 @@ public class HomeView extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(133, 133, 133))
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
-                .addComponent(notesCollection, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(flashcards, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(notesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(169, 169, 169)
+                .addComponent(notesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(140, 140, 140)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(flashcards, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(notesCollection, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(study, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(136, 136, 136))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,11 +248,19 @@ public class HomeView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newNote, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(notesCollection, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(flashcards, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(study, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(flashcards, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(83, 83, 83))
         );
 
         notesLabel.getAccessibleContext().setAccessibleName("notesLabel");
@@ -244,7 +269,7 @@ public class HomeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newNoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newNoteActionPerformed
-        noteTakingApp.createNewNote();
+        
     }//GEN-LAST:event_newNoteActionPerformed
 
     private void notesCollectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notesCollectionActionPerformed
@@ -255,24 +280,35 @@ public class HomeView extends javax.swing.JFrame {
        
     }//GEN-LAST:event_flashcardsActionPerformed
 
+ 
+    
     
     private void newNoteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newNoteMousePressed
         // TODO add your handling code here:
-         NoteEditing.setTitle("New Note");
-         NoteEditing.setSize(500, 500);
-         NoteEditing.setLocationRelativeTo(this); // Center it on the parent window
-         NoteEditing.setVisible(true);
-         NoteEditing.setDefaultCloseOperation(NoteEditing.DISPOSE_ON_CLOSE);
+        
+        
+        new note().setVisible(true);
+        
+        // NoteEditing.setTitle("New Note");
+        // NoteEditing.setSize(500, 500);
+        // NoteEditing.setLocationRelativeTo(this); // Center it on the parent window
+        // NoteEditing.setVisible(true);
+        // NoteEditing.setDefaultCloseOperation(NoteEditing.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_newNoteMousePressed
 
+    
+    
     // have to create a jFrame and then for the mouse pressed event 
     private void flashcardsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flashcardsMousePressed
         // TODO add your handling code here:
-        flashcardFrame.setTitle("Flashcards");
-        flashcardFrame.setSize(400, 300);
-        flashcardFrame.setLocationRelativeTo(this);
-        flashcardFrame.setVisible(true);
-        flashcardFrame.setDefaultCloseOperation(directoryFrame.DISPOSE_ON_CLOSE);
+        //flashcardFrame.setTitle("Flashcards");
+       // flashcardFrame.setSize(400, 300);
+       // flashcardFrame.setLocationRelativeTo(this);
+       // flashcardFrame.setVisible(true);
+       // flashcardFrame.setDefaultCloseOperation(directoryFrame.DISPOSE_ON_CLOSE);
+       
+       new FlashCardBuilder().setVisible(true);
+       
     }//GEN-LAST:event_flashcardsMousePressed
 
     private void notesCollectionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notesCollectionMousePressed
@@ -283,6 +319,15 @@ public class HomeView extends javax.swing.JFrame {
         directoryFrame.setVisible(true);
         directoryFrame.setDefaultCloseOperation(directoryFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_notesCollectionMousePressed
+
+    private void studyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studyActionPerformed
+        
+    }//GEN-LAST:event_studyActionPerformed
+
+    private void studyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studyMousePressed
+        // TODO add your handling code here:
+         new FlashCardPlayer().setVisible(true);
+    }//GEN-LAST:event_studyMousePressed
 
     
     /**
@@ -311,9 +356,11 @@ public class HomeView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new HomeView().setVisible(true);
             }
@@ -330,12 +377,14 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newNote;
     private javax.swing.JLabel noteLabel;
     private javax.swing.JButton notesCollection;
     private javax.swing.JLabel notesLabel;
     private javax.swing.JButton saveNote;
+    private javax.swing.JButton study;
     private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }
