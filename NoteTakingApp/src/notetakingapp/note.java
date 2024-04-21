@@ -30,7 +30,6 @@ public class Note {
     }
     
     
-    // Getters and setters
 
     // Method to save the note to a file
     public void saveNoteToFile(String directoryPath) {
