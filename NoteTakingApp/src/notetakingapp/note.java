@@ -61,173 +61,154 @@ public class note{
     int fstyle;
     
     
-    
-    
-    
-    
-   
     public note(){
-    
-        
-    String title = JOptionPane.showInputDialog("Enter the title of the new note: ", "New Note");
-    String content = JOptionPane.showInputDialog("Enter the content of the new note:", "New Note");  
+     
+        String title = JOptionPane.showInputDialog("Enter the title of the new note: ", "New Note");
+        String content = JOptionPane.showInputDialog("Enter the content of the new note:", "New Note");  
 
-    bottomPanel = new JPanel();
+        bottomPanel = new JPanel();
 
-    // Creating a menu bar to hold File, Edit, and Format
-    JMenuBar menuBar = new JMenuBar();
-    
-    // Creating the JMenu for the file tab
-    JMenu fileMenu = new JMenu("File");
-    
-    // Creates the options that will be under the file tab
-    JMenuItem newMenuItem = new JMenuItem("New");
-    JMenuItem openMenuItem = new JMenuItem("Open");
-    JMenuItem saveMenuItem = new JMenuItem("Save");
-    JMenuItem printMenuItem = new JMenuItem("Print");
-    JMenuItem exitMenuItem = new JMenuItem("Exit");
-    
-    
-    // Creating the JMenu for the Edit tab
-    JMenu editMenu = new JMenu("Edit");
-    
-    // Creates the menu items that will be under the edit tab
-    JMenuItem copyMenuItem = new JMenuItem("Copy");
-    JMenuItem pasteMenuItem = new JMenuItem("Paste");
-    JMenuItem cutMenuItem = new JMenuItem("Cut");
-    JMenuItem selectMenuItem = new JMenuItem("Select All");
-    
-    
-    
-    // Creating the JMenu for the Format tab
-    JMenu formatMenu = new JMenu("Format");
-    
-    // Creates the menu items that will be under the Format tab
-    JMenuItem fontfamilyMenuItem = new JMenuItem("Font Family");
-    JMenuItem fontstyleMenuItem = new JMenuItem("Font Style");
-    JMenuItem fontsizeMenuItem = new JMenuItem("Font Size ");
-    
-   
-    
-    //TextArea / Editor of Notepad
-     area = new JTextArea();
+        // Creating a menu bar to hold File, Edit, and Format
+        JMenuBar menuBar = new JMenuBar();
 
-        
-    //Creating Scrollables around textarea
-    scpane = new JScrollPane(area);
+        // Creating the JMenu for the file tab
+        JMenu fileMenu = new JMenu("File");
 
-    //Creating border for scrollpane
-    scpane.setBorder(BorderFactory.createEmptyBorder());
-    
-    
-    
-    // Adds the menuitems to the file drop-down button in menu
-    fileMenu.add(newMenuItem);
-    fileMenu.add(openMenuItem);
-    fileMenu.add(saveMenuItem);
-    fileMenu.add(printMenuItem);
-    fileMenu.add(exitMenuItem);
-    
-    // Adds the menuitems to the edit drop-down button in menu
-    editMenu.add(copyMenuItem);
-    editMenu.add(pasteMenuItem);
-    editMenu.add(cutMenuItem);
-    editMenu.add(selectMenuItem);
-    
-    // Adds the menuitems to the format drop-down button in menu
-    formatMenu.add(fontfamilyMenuItem);
-    formatMenu.add(fontstyleMenuItem);
-    formatMenu.add(fontsizeMenuItem);
-    
-    // Adds the File to the menu bar
-    menuBar.add(fileMenu);
-    
-    // Adds the actions that each button under the file tab should perform
-    newMenuItem.addActionListener(new newMenuItemListener());
-    openMenuItem.addActionListener(new openMenuItemListener());
-    saveMenuItem.addActionListener(new saveMenuItemListener());
-    printMenuItem.addActionListener(new printMenuItemListener());
-    exitMenuItem.addActionListener(new exitMenuItemListener());
-    
-    
-    // Adds Edit to the menu bar
-    menuBar.add(editMenu);
-    
-    // Adds the actions that each button under the edit tab should perform
-    copyMenuItem.addActionListener(new copyMenuItemListener());
-    pasteMenuItem.addActionListener(new pasteMenuItemListener());
-    cutMenuItem.addActionListener(new cutMenuItemListener());
-    selectMenuItem.addActionListener(new selectMenuItemListener());
-    
-    
-    
-    // Adds Format to the menu bar
-    menuBar.add(formatMenu);
-    
-    // Adds the actions that each button under the format tab should perform
-    fontfamilyMenuItem.addActionListener(new fontfamilyMenuItemListener());
-    fontstyleMenuItem.addActionListener(new fontstyleMenuItemListener());
-    fontsizeMenuItem.addActionListener(new fontsizeMenuItemListener());
-    
-    
-    
-    
-    //Creating List of Font Family and assigning the list values
-    fontFamilyList = new JList(fontFamilyValues);
+        // Creates the options that will be under the file tab
+        JMenuItem newMenuItem = new JMenuItem("New");
+        JMenuItem openMenuItem = new JMenuItem("Open");
+        JMenuItem saveMenuItem = new JMenuItem("Save");
+        JMenuItem printMenuItem = new JMenuItem("Print");
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
 
-    //Creating List of Font Styles and assigning the list values
-    fontStyleList = new JList(fontStyleValues);
 
-    //Creating List of Font Size and assigning the list values
-    fontSizeList = new JList(fontSizeValues);
+        // Creating the JMenu for the Edit tab
+        JMenu editMenu = new JMenu("Edit");
 
-    //Allowing user to select only one option
-    fontFamilyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    fontStyleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    fontSizeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        // Creates the menu items that will be under the edit tab
+        JMenuItem copyMenuItem = new JMenuItem("Copy");
+        JMenuItem pasteMenuItem = new JMenuItem("Paste");
+        JMenuItem cutMenuItem = new JMenuItem("Cut");
+        JMenuItem selectMenuItem = new JMenuItem("Select All");
 
-    //TextArea / Editor of Notepad
-    area = new JTextArea();
 
-    //Default font will be sam_serif and default font style will be plain and default style will be 20. 
-    area.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+        // Creating the JMenu for the Format tab
+        JMenu formatMenu = new JMenu("Format");
 
-    //Sets the line-wrapping policy of the text area
-    area.setLineWrap(true);
+        // Creates the menu items that will be under the Format tab
+        JMenuItem fontfamilyMenuItem = new JMenuItem("Font Family");
+        JMenuItem fontstyleMenuItem = new JMenuItem("Font Style");
+        JMenuItem fontsizeMenuItem = new JMenuItem("Font Size ");
 
-    //Sets the word-wrapping policy of the text area
-    area.setWrapStyleWord(true);
 
-    //Creating Scrollables around textarea
-    scpane = new JScrollPane(area);
+        //TextArea / Editor of Notepad
+         area = new JTextArea();
 
-    //Creating border for scrollpane
-    scpane.setBorder(BorderFactory.createEmptyBorder());
-    
-    
-    // Sets the menu bar on the note frame
-    frame.setJMenuBar(menuBar);
+        //Creating Scrollables around textarea
+        scpane = new JScrollPane(area);
 
-    //Setting up the size of frame
-    frame.setSize(500, 500);
+        //Creating border for scrollpane
+        scpane.setBorder(BorderFactory.createEmptyBorder());
 
-    //Setting up the layout of frame
-    frame.setLayout(new BorderLayout());
 
-    //Adding panels in frame
-    frame.add(scpane, BorderLayout.CENTER);
-    frame.add(bottomPanel, BorderLayout.SOUTH);
-        
-    //Setting Frame visible to user
-    frame.setVisible(true);
-    
-    
-    
-    
+        // Adds the menuitems to the file drop-down button in menu
+        fileMenu.add(newMenuItem);
+        fileMenu.add(openMenuItem);
+        fileMenu.add(saveMenuItem);
+        fileMenu.add(printMenuItem);
+        fileMenu.add(exitMenuItem);
+
+        // Adds the menuitems to the edit drop-down button in menu
+        editMenu.add(copyMenuItem);
+        editMenu.add(pasteMenuItem);
+        editMenu.add(cutMenuItem);
+        editMenu.add(selectMenuItem);
+
+        // Adds the menuitems to the format drop-down button in menu
+        formatMenu.add(fontfamilyMenuItem);
+        formatMenu.add(fontstyleMenuItem);
+        formatMenu.add(fontsizeMenuItem);
+
+        // Adds the File to the menu bar
+        menuBar.add(fileMenu);
+
+        // Adds the actions that each button under the file tab should perform
+        newMenuItem.addActionListener(new newMenuItemListener());
+        openMenuItem.addActionListener(new openMenuItemListener());
+        saveMenuItem.addActionListener(new saveMenuItemListener());
+        printMenuItem.addActionListener(new printMenuItemListener());
+        exitMenuItem.addActionListener(new exitMenuItemListener());
+
+
+        // Adds Edit to the menu bar
+        menuBar.add(editMenu);
+
+        // Adds the actions that each button under the edit tab should perform
+        copyMenuItem.addActionListener(new copyMenuItemListener());
+        pasteMenuItem.addActionListener(new pasteMenuItemListener());
+        cutMenuItem.addActionListener(new cutMenuItemListener());
+        selectMenuItem.addActionListener(new selectMenuItemListener());
+
+
+        // Adds Format to the menu bar
+        menuBar.add(formatMenu);
+
+        // Adds the actions that each button under the format tab should perform
+        fontfamilyMenuItem.addActionListener(new fontfamilyMenuItemListener());
+        fontstyleMenuItem.addActionListener(new fontstyleMenuItemListener());
+        fontsizeMenuItem.addActionListener(new fontsizeMenuItemListener());
+
+
+        //Creating List of Font Family and assigning the list values
+        fontFamilyList = new JList(fontFamilyValues);
+
+        //Creating List of Font Styles and assigning the list values
+        fontStyleList = new JList(fontStyleValues);
+
+        //Creating List of Font Size and assigning the list values
+        fontSizeList = new JList(fontSizeValues);
+
+        //Allowing user to select only one option
+        fontFamilyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        fontStyleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        fontSizeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        //TextArea / Editor of Notepad
+        area = new JTextArea();
+
+        //Default font will be sam_serif and default font style will be plain and default style will be 20. 
+        area.setFont(new Font("Times New Roman", Font.PLAIN, 12));
+
+        //Sets the line-wrapping policy of the text area
+        area.setLineWrap(true);
+
+        //Sets the word-wrapping policy of the text area
+        area.setWrapStyleWord(true);
+
+        //Creating Scrollables around textarea
+        scpane = new JScrollPane(area);
+
+        //Creating border for scrollpane
+        scpane.setBorder(BorderFactory.createEmptyBorder());
+
+
+        // Sets the menu bar on the note frame
+        frame.setJMenuBar(menuBar);
+
+        //Setting up the size of frame
+        frame.setSize(500, 500);
+
+        //Setting up the layout of frame
+        frame.setLayout(new BorderLayout());
+
+        //Adding panels in frame
+        frame.add(scpane, BorderLayout.CENTER);
+        frame.add(bottomPanel, BorderLayout.SOUTH);
+
+        //Setting Frame visible to user
+        frame.setVisible(true);
 }
    
-    
-    
     class newMenuItemListener implements ActionListener{
 
         @Override
@@ -239,10 +220,7 @@ public class note{
             
         }
     }
-    
-   
-    
-    
+     
     class openMenuItemListener implements ActionListener{
 
         @Override
@@ -270,20 +248,10 @@ public class note{
                     area.requestFocus();
                 } catch (Exception ex) {
                     System.out.print(ex);
-                }
-
-                        
+                }        
             }
-            
         }
-       
-        
-        
-        
     }
-    
-   
-    
     
     class saveMenuItemListener implements ActionListener{
 
@@ -313,8 +281,6 @@ public class note{
     }
     
     
-    
-    
     class printMenuItemListener implements ActionListener{
 
         @Override
@@ -329,7 +295,6 @@ public class note{
         }
     }
     
-    
     class exitMenuItemListener implements ActionListener{
 
         @Override
@@ -341,9 +306,6 @@ public class note{
         }
     }
     
-    
-    
-    
     class copyMenuItemListener implements ActionListener{
 
         @Override
@@ -354,7 +316,6 @@ public class note{
         }
     }
     
-    
     class pasteMenuItemListener implements ActionListener{
 
         @Override
@@ -364,7 +325,6 @@ public class note{
              
         }
     }
-    
     
     class cutMenuItemListener implements ActionListener{
 
@@ -377,7 +337,6 @@ public class note{
         }
     }
     
-    
     class selectMenuItemListener implements ActionListener{
 
         @Override
@@ -387,10 +346,7 @@ public class note{
              
         }
     }
-    
-    
-    
-    
+     
     class fontfamilyMenuItemListener implements ActionListener{
 
         @Override
