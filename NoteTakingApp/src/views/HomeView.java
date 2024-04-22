@@ -260,14 +260,8 @@ public class HomeView extends javax.swing.JFrame {
     private void newNoteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newNoteMousePressed
         // TODO add your handling code here:
         
-        
         new note().setVisible(true);
         
-        // NoteEditing.setTitle("New Note");
-        // NoteEditing.setSize(500, 500);
-        // NoteEditing.setLocationRelativeTo(this); // Center it on the parent window
-        // NoteEditing.setVisible(true);
-        // NoteEditing.setDefaultCloseOperation(NoteEditing.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_newNoteMousePressed
 
     
@@ -275,12 +269,7 @@ public class HomeView extends javax.swing.JFrame {
     // have to create a jFrame and then for the mouse pressed event 
     private void flashcardsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_flashcardsMousePressed
         // TODO add your handling code here:
-        //flashcardFrame.setTitle("Flashcards");
-       // flashcardFrame.setSize(400, 300);
-       // flashcardFrame.setLocationRelativeTo(this);
-       // flashcardFrame.setVisible(true);
-       // flashcardFrame.setDefaultCloseOperation(directoryFrame.DISPOSE_ON_CLOSE);
-       
+ 
        new FlashCardBuilder().setVisible(true);
        
     }//GEN-LAST:event_flashcardsMousePressed

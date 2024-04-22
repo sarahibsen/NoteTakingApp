@@ -25,9 +25,6 @@ import java.util.List;
 
 public class NoteTakingApp extends JFrame {
     private List<note> notes;
-    
-    note currentNote;
-    
     private JTextPane textPane; // for advanced text formatting and embedding images
     private JList<note> notesList; // to display a list of notes
  //   private List<Flashcard> flashcards; // call the flashcard class to be used within the main 

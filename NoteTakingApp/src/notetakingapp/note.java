@@ -196,7 +196,7 @@ public class note{
         //TextArea / Editor of Notepad
         area = new JTextArea();
 
-        //Default font will be sam_serif and default font style will be plain and default style will be 20. 
+        //Default font will be Times New Roman and default font style will be plain and default style will be 12. 
         area.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 
         //Sets the line-wrapping policy of the text area
