@@ -53,6 +53,8 @@ public class FlashCardPlayer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         display = new JTextArea(10, 20);
+        display.setLineWrap(true);
+        display.setWrapStyleWord(true);
         display.setFont(mFont);
         
         JScrollPane qJScrollPane = new JScrollPane(display);

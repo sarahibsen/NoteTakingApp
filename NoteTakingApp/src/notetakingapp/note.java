@@ -275,7 +275,7 @@ public class note{
             FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .txt files", "txt");
             SaveAs.addChoosableFileFilter(restrict);
             SaveAs.setApproveButtonText("Save");
-            int actionDialog = SaveAs.showOpenDialog(frame);
+            int actionDialog = SaveAs.showSaveDialog(frame);
             if (actionDialog != JFileChooser.APPROVE_OPTION) {
                 return;
             }
