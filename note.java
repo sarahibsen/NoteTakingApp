@@ -35,8 +35,9 @@ public class note{
     JPanel bottomPanel;
     JScrollPane sb;
     
+    
    
-    // Defining a List of Fonts for the text, Uses the Fonts available in Java
+    
     String fontFamilyValues[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
     
     
@@ -52,11 +53,10 @@ public class note{
     //Defining List of Font Styles for Text
     String[] fontStyleValues = {"PLAIN", "BOLD", "ITALIC"};
     
-    
-    // Defines variables to allow formatting of text
     Font newFont;
     String fontFamily, fontSize, fontStyle;
     JList fontFamilyList, fontStyleList, fontSizeList; 
+    
     int fstyle;
     
     
@@ -97,6 +97,11 @@ public class note{
         JMenuItem fontsizeMenuItem = new JMenuItem("Font Size ");
 
 
+        // adding a delete function so that the user czn delete from the directory 
+        JMenuItem deleteMenuItem = new JMenuItem("Delete");
+        fileMenu.add(deleteMenuItem);
+        deleteMenuItem.addActionListener(new deleteMenuItemListener());
+        
         //TextArea / Editor of Notepad
          area = new JTextArea();
 
@@ -161,8 +166,7 @@ public class note{
         
         
         
-        // Creating List of Font options and assigning the list values
-        // Allows for the fonts list to be scrollable
+        //Creating List of Font options and assigning the list values
         fontFamilyList = new JList(fontFamilyValues){
             @Override
             public Dimension getPreferredScrollableViewportSize(){
@@ -175,8 +179,7 @@ public class note{
 
       
 
-        // Creating List of Font Size and assigning the list values
-        // Allows for the lizt of sizes to be scrollable
+        //Creating List of Font Size and assigning the list values
         fontSizeList = new JList(fontSizeValues){
           @Override
           public Dimension getPreferredScrollableViewportSize(){
@@ -229,7 +232,6 @@ public class note{
         frame.setVisible(true);
 }
    
-    // creates a class that handles the action for when new button is pressed
     class newMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -238,20 +240,18 @@ public class note{
         }
     }
      
-   // Creates a class that uses an ActionListener to open the files or notes 
     class openMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             
-             // Setting current directory to the "user.dir" or where project is stored
+             //Setting current by default directory "C" folder
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
             chooser.setAcceptAllFileFilterUsed(false);
             //Allowing only text (.txt) files extension to open
             FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .txt files", "txt");
             chooser.addChoosableFileFilter(restrict);
-            
-            // Opens the open file dialog available through Java
+
             int result = chooser.showOpenDialog(frame);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File file = chooser.getSelectedFile();
@@ -271,26 +271,20 @@ public class note{
         }
     }
     
-    
-    // Creates a class that uses an ActionListener to save the files or notes 
     class saveMenuItemListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
             final JFileChooser SaveAs = new JFileChooser();
-            // Setting current directory to the "user.dir" or where project is stored
             SaveAs.setCurrentDirectory(new File(System.getProperty("user.dir")));
             SaveAs.setAcceptAllFileFilterUsed(false);
-            // Allowing only text (.txt) files extension to open
             FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .txt files", "txt");
             SaveAs.addChoosableFileFilter(restrict);
             SaveAs.setApproveButtonText("Save");
-            // Opens the Save file dialog available through Java
             int actionDialog = SaveAs.showSaveDialog(frame);
             if (actionDialog != JFileChooser.APPROVE_OPTION) {
                 return;
             }
-            // When file is save it converts the file to .txt
             File fileName = new File(SaveAs.getSelectedFile() + ".txt");
             BufferedWriter outFile = null;
             try {
@@ -304,7 +298,6 @@ public class note{
     }
     
     
-    // Creates a class that uses an ActionListener to print the files or notes
     class printMenuItemListener implements ActionListener{
 
         @Override
@@ -318,8 +311,6 @@ public class note{
         }
     }
     
-    
-    // Creates a class that uses an ActionListener to exit the note editing page
     class exitMenuItemListener implements ActionListener{
 
         @Override
@@ -330,7 +321,6 @@ public class note{
         }
     }
     
-    // Creates a class that uses an ActionListener to copy the files or notes
     class copyMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -338,8 +328,6 @@ public class note{
         }
     }
     
-    
-    // Creates a class that uses an ActionListener to paste to the note
     class pasteMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -347,7 +335,6 @@ public class note{
         }
     }
     
-    // Creates a class that uses an ActionListener to cut information from the note
     class cutMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -356,41 +343,59 @@ public class note{
         }
     }
     
-    // Creates a class that uses an ActionListener to Select everything on note
     class selectMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             area.selectAll();
         }
     }
-    
-    // Creates a class that uses an ActionListener to open the availabel fonts
+     
     class fontfamilyMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            // Uses a JOptionPane to show the selection of available fonts
             JOptionPane.showConfirmDialog(null, new JScrollPane(fontFamilyList), "Choose Font Family", 
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
             
-            // Gets the selected font from the user
             fontFamily = String.valueOf(fontFamilyList.getSelectedValue());
             
             newFont = new Font(fontFamily, fstyle, fsize);
             
-            // Sets the new font
             area.setFont(newFont);
              
         }
     }
     
+    // class for delete function
+    class deleteMenuItemListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+            chooser.setDialogTitle("Select a File to Delete");
+            chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            chooser.setAcceptAllFileFilterUsed(false);
+            FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .txt files", "txt");
+            chooser.addChoosableFileFilter(restrict);
 
-    // Creates a class that uses an ActionListener to open the available font styles
+            int result = chooser.showOpenDialog(frame);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                if (file.delete()) {
+                    JOptionPane.showMessageDialog(frame, "File deleted successfully!", "File Deletion", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Failed to delete the file.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+
+    
     class fontstyleMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            //Setting up Font Style using JOptionPane to show options
+            //Setting up Font Style
           JOptionPane.showConfirmDialog(null, fontStyleList, "Choose Font Style",
                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
            fstyle = stylevalue[fontStyleList.getSelectedIndex()];
@@ -400,7 +405,7 @@ public class note{
         }
     }
     
-    // Creates a class that uses an ActionListener to open font size selection
+    
     class fontsizeMenuItemListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

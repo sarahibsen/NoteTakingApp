@@ -92,14 +92,18 @@ public class FlashCardBuilder {
         
         JMenuItem saveMenuItem = new JMenuItem("Save");
         
+        JMenuItem deleteMenuItem = new JMenuItem("Delete");
+        
         fileMenu.add(newMenuItem);
         fileMenu.add(saveMenuItem);
+        fileMenu.add(deleteMenuItem);
         
         menuBar.add(fileMenu);
         
         
         newMenuItem.addActionListener(new NewMenuItemListener());
         saveMenuItem.addActionListener(new SaveMenuItemListener());
+        deleteMenuItem.addActionListener(new DeleteMenuItemListener());
         
         
         frame.setJMenuBar(menuBar);
@@ -138,12 +142,34 @@ public class FlashCardBuilder {
         }
     }
     
-    
+     class DeleteMenuItemListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setDialogTitle("Select a File to Delete");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Files", "txt");
+        fileChooser.addChoosableFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(frame);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File fileToBeDeleted = fileChooser.getSelectedFile();
+            if (fileToBeDeleted.delete()) {
+                System.out.println("File deleted Successfully");
+            } else {
+                System.out.println("Error: File could not be deleted");
+            }
+        }
+    }
+}
+
      class SaveMenuItemListener implements ActionListener{
         
         @Override
         public void actionPerformed(ActionEvent e){
-          FlashCard card = new FlashCard(question.getText(), answer.getText());
+          FlashCard carItemd = new FlashCard(question.getText(), answer.getText());
           
           JFileChooser fileSave = new JFileChooser();
           fileSave.setCurrentDirectory(new File(System.getProperty("user.dir")));
