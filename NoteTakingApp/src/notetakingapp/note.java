@@ -35,11 +35,9 @@ public class note{
     JPanel bottomPanel;
     JScrollPane sb;
     
+   
     
-    //Defining List of Fonts for Text
-    String fontFamilyValues[] = {"Agency FB", "Antiqua", "Architect", "Arial",
-        "Calibri", "Comic Sans", "Courier", "Cursive", "Impact", "Serif", 
-        "Times New Roman"};
+    String fontFamilyValues[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
     
     
     //Defining List of Font Size for Text
@@ -62,10 +60,7 @@ public class note{
     
     
     public note(){
-     
-        //String title = JOptionPane.showInputDialog("Enter the title of the new note: ", "New Note");
-        //String content = JOptionPane.showInputDialog("Enter the content of the new note:", "New Note");  
-
+      
         bottomPanel = new JPanel();
 
         // Creating a menu bar to hold File, Edit, and Format
@@ -159,15 +154,37 @@ public class note{
         fontsizeMenuItem.addActionListener(new fontsizeMenuItemListener());
 
 
-        //Creating List of Font Family and assigning the list values
-        fontFamilyList = new JList(fontFamilyValues);
 
         //Creating List of Font Styles and assigning the list values
         fontStyleList = new JList(fontStyleValues);
+        
+        
+        
+        //Creating List of Font options and assigning the list values
+        fontFamilyList = new JList(fontFamilyValues){
+            @Override
+            public Dimension getPreferredScrollableViewportSize(){
+                Dimension dim = super.getPreferredScrollableViewportSize();
+                dim.width = 25;
+                return dim;
+          }
+        };
+        
+
+      
 
         //Creating List of Font Size and assigning the list values
-        fontSizeList = new JList(fontSizeValues);
-
+        fontSizeList = new JList(fontSizeValues){
+          @Override
+          public Dimension getPreferredScrollableViewportSize(){
+            Dimension dim = super.getPreferredScrollableViewportSize();
+            dim.width = 25;
+            return dim;
+         }
+        };
+        
+        
+        
         //Allowing user to select only one option
         fontFamilyList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         fontStyleList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -258,7 +275,6 @@ public class note{
             FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .txt files", "txt");
             SaveAs.addChoosableFileFilter(restrict);
             SaveAs.setApproveButtonText("Save");
-            //Opening the dialog and asking from user where to save the file.
             int actionDialog = SaveAs.showOpenDialog(frame);
             if (actionDialog != JFileChooser.APPROVE_OPTION) {
                 return;
@@ -332,7 +348,7 @@ public class note{
         @Override
         public void actionPerformed(ActionEvent e) {
             
-            JOptionPane.showConfirmDialog(null, fontFamilyList, "Choose Font Family", 
+            JOptionPane.showConfirmDialog(null, new JScrollPane(fontFamilyList), "Choose Font Family", 
                     JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
             
             fontFamily = String.valueOf(fontFamilyList.getSelectedValue());
@@ -366,7 +382,7 @@ public class note{
         public void actionPerformed(ActionEvent e) {
             
            //Setting up Font Size
-           JOptionPane.showConfirmDialog(null, fontSizeList, "Choose Font Size",
+           JOptionPane.showConfirmDialog(null, new JScrollPane(fontSizeList), "Choose Font Size",
                    JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
            fontSize = String.valueOf(fontSizeList.getSelectedValue());
            fsize = Integer.parseInt(fontSize);
