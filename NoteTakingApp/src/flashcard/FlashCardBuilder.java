@@ -147,12 +147,14 @@ public class FlashCardBuilder {
           
           JFileChooser fileSave = new JFileChooser();
           fileSave.setCurrentDirectory(new File(System.getProperty("user.dir")));
+          fileSave.setAcceptAllFileFilterUsed(false);
           FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only .txt files", "txt");
           fileSave.addChoosableFileFilter(restrict);
+          fileSave.setApproveButtonText("Save");
           
           fileSave.setAcceptAllFileFilterUsed(false);
           fileSave.showSaveDialog(frame);
-          saveFile(fileSave.getSelectedFile());
+          saveFile(new File(fileSave.getSelectedFile() + ".txt"));
         }
 
     }
